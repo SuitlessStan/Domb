@@ -1,0 +1,313 @@
+nav {
+    background: #AB6450;
+    height: 44px;
+}
+
+nav a {
+    color: #fff;
+}
+
+nav a:hover {
+    color: rgb(221, 212, 212);
+}
+
+.top-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 32px;
+}
+
+.top-right>div {
+    margin-right: 10px;
+}
+
+button {
+    font-family: inherit;
+    font-size: 20px;
+    color: rgb(221, 212, 212);
+    text-decoration: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    margin-top: 5px;
+}
+
+
+/* Left section */
+
+.left-section {
+    overflow: auto;
+    width: 340px;
+    box-sizing: border-box;
+}
+
+#cans {
+    background: #dbdcdc;
+    padding: 0.5rem;
+}
+
+#features {
+    height: 100vh !important;
+    text-align: center;
+    color: black;
+    border-radius: 5px;
+    padding: 1rem 0.5rem;
+    font-weight: bold;
+}
+
+.features-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#features a {
+    color: black;
+}
+
+#features li {
+    width: 100%;
+    color: black;
+}
+
+.container-fluid .card .bg-light {
+    width: 300px;
+    list-style: none;
+}
+
+.left-section li {
+    list-style: none;
+    font-size: 16px;
+    border-bottom: 1px solid #444;
+    padding: 1rem 0;
+    transition: all 0.1s ease-in;
+    color: #db4c3f;
+}
+
+.left-section li:hover {
+    background: #ececec;
+}
+
+.left-section a {
+    text-decoration: none;
+    color: black;
+}
+
+.left-section span {
+    margin-left: 12px;
+}
+
+
+/* Main Section */
+
+#todaysDate {
+    display: flex;
+    background-color: #fff;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 36px;
+}
+
+
+/* Notification */
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: #17A2B8;
+}
+
+.notification {
+    margin: 10px 5px;
+}
+
+.dropdown-menu {
+    top: 60px;
+    right: 0px;
+    left: unset;
+    width: 250px;
+    box-shadow: 0px 5px 7px -1px #c1c1c1;
+    padding-bottom: 0px;
+    padding: 0px;
+}
+
+.dropdown-menu:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 12px;
+    border: 10px solid #343A40;
+    border-color: transparent transparent #343A40 transparent;
+}
+
+.head {
+    padding: 5px 15px;
+    border-radius: 3px 3px 0px 0px;
+}
+
+.footer {
+    padding: 5px 15px;
+    border-radius: 0px 0px 3px 3px;
+}
+
+.notification-box {
+    padding: 10px 0px;
+}
+
+.bg-gray {
+    background-color: #eee;
+}
+
+@media (max-width: 640px) {
+    .dropdown-menu {
+        top: 50px;
+        left: -16px;
+        width: 290px;
+    }
+    .nav {
+        display: block;
+    }
+    .nav .nav-item,
+    .nav .nav-item a {
+        padding-left: 0px;
+    }
+    .message {
+        font-size: 13px;
+    }
+}
+
+
+/* Main content */
+
+#date {
+    font-size: 55%;
+}
+
+.list-items {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 36px;
+    border-radius: 5px;
+}
+
+.item-in-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(211, 204, 204);
+    border-radius: 5px;
+    width: 30vw;
+    height: 42px;
+}
+
+
+/* Tasks */
+
+#addForm label {
+    font-size: 15px;
+}
+
+#add_task {
+    margin-top: 12px;
+    display: flex;
+}
+
+#tasksList li {
+    list-style-type: none;
+}
+
+.taskInteractionContainer p {
+    margin-top: 14px;
+    margin-left: 10px;
+}
+
+.taskInteractionContainer i {
+    font-size: 1.7rem;
+}
+
+.taskInteractionContainer {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.7rem;
+}
+
+.form-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 80px;
+    width: 60vw;
+    padding: 1rem;
+    cursor: text;
+    display: flex;
+    margin-top: 0.7rem;
+}
+
+#addForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+.form-container input {
+    border-color: #ddd;
+    outline: none;
+    border-radius: 5px;
+    width: 55%;
+    margin-left: 15px;
+}
+
+.form-container button {
+    /* margin-right: 5px; */
+    margin-left: 10px;
+}
+
+.task-container {
+    padding: 0.5rem 1rem;
+    width: 60%;
+    font-size: 14px;
+    background: #F8FAFC;
+    text-align: center;
+    margin-left: 1rem;
+    margin-top: 0.7rem;
+}
+
+.inherit {
+    width: inherit !important;
+}
+
+.activities-container {
+    height: 40vh;
+    width: 50vw;
+    border: 1px solid #ddd;
+    padding: 1rem 1rem;
+}
+
+.question-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+}
