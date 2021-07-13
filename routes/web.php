@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +34,9 @@ Route::post('/appointments',[AppointmentController::class,'store']);
 
 Route::get('/activities',[ActivityController::class,'index'])->name('activities');
 Route::post('/activities',[ActivityController::class,'store']);
+
+
+Route::get('/media',[MediaController::class,'index'])->name('media');
+
+
+Route::get('/calendar',[CalendarController::class,'index'])->name('calendar');

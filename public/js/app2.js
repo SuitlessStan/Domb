@@ -33,12 +33,27 @@ $(document).ready(function() {
         $('#add_task').addClass('d-none');
         $('.form-container').removeClass('d-none');
         $('.activities-container').removeClass('d-none');
+
     });
 
     $('#cancelTask').click(function() {
+
         $('.activities-container').addClass('d-none');
         $('.form-container').addClass('d-none');
         $('#add_task').removeClass('d-none');
+
+    });
+
+    $('#closeModal').click(function() {
+
+        $('#add_task').removeClass('d-none');
+
+    });
+
+    $('#closeModalButton').click(function() {
+
+        $('#add_task').removeClass('d-none');
+
     });
 
 
