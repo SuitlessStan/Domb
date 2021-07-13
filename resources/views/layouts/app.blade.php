@@ -102,7 +102,7 @@
                                         <i class="fas fa-snowboarding mr-2"></i>
                                         <small class="features-title">Activities</small>
                                     </div>
-                                    <small class="mr-2">0</small>
+                                    <small class="mr-2">{{$pollsCount}}</small>
                                 </li>
                             </a>
                             <a href="/media" class="item-nav">

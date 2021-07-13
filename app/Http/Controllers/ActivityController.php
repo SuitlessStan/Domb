@@ -6,16 +6,16 @@ use App\Http\Requests\StoreOptionRequest;
 use App\Http\Requests\StorePollRequest;
 use App\Models\Poll;
 use Illuminate\Http\Request;
+use DB;
 
 class ActivityController extends Controller
 {
     public function index(){
-        $polls = Poll::all();
-        $options = $polls->options();
-        return view('activities',[
-            'polls'=>$polls,
-            'options'=>$options
-        ]);
+        $polls = Poll::with(['options'])->get();
+        return view('activities', compact('polls'));
+        // return view('activities',[
+        //     'polls'=>$polls,
+        // ]);
     }
 
     public function store(Request $request){

@@ -36,7 +36,7 @@ $(document).ready(function() {
     });
 
     $('#cancelTask').click(function() {
-        $('.activites-container').hide();
+        $('.activities-container').addClass('d-none');
         $('.form-container').addClass('d-none');
         $('#add_task').removeClass('d-none');
     });

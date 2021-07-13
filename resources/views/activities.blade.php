@@ -37,70 +37,82 @@
                     </div>
 
                 </form>
-                @if($polls && $polls->options())
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">
-                                        <span class="glyphicon glyphicon-arrow-right"></span>How is My Site? <a href="http://www.jquery2dotnet.com" target="_blank"><span
-                                            class="glyphicon glyphicon-new-window"></span></a>
-                                    </h3>
+            </div>
+        </li>
+        <li>
+            @if($polls)
+            @foreach ($polls as $poll)
+                    @foreach ($poll->options as $option)
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title text-center card bg-primary text-light mt-1 p-2" id="poll-title">
+                                                {{$poll->question}}
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <div class="radio">
+                                                        <input type="radio"
+                                                         name="option_1"
+                                                         id="option_1"
+                                                         value="{{$option->option_1}}"
+                                                         checked
+                                                         >
+                                                        <label for="option_1">
+                                                            {{$option->option_1}}
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="radio">
+                                                        <input type="radio"
+                                                        name="option_2"
+                                                        id="option_2"
+                                                        value="{{$option->option_2}}">
+                                                        <label for="option_2">
+                                                            {{$option->option_2}}
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="radio">
+                                                        <input type="radio"
+                                                        name="option_3"
+                                                        id="option_3"
+                                                        value="{{$option->option_3}}">
+                                                        <label for="option_3">
+                                                            {{$option->option_3}}
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="radio">
+                                                        <input type="radio"
+                                                        name="option_4"
+                                                        id="option_3"
+                                                        value="{{$option->option_4}}">
+                                                        <label for="option_4">
+                                                            {{$option->option_4}}
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="panel-footer text-center mt-2">
+                                            <a href="#">View Result</a>
+                                            <button type="button" class="btn btn-primary">
+                                                Vote</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="panel-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios">
-                                                    Good
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios">
-                                                    Excellent
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios">
-                                                    Bed
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios">
-                                                    Can Be Improved
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios">
-                                                    No Comment
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="panel-footer">
-                                    <button type="button" class="btn btn-primary btn-sm">
-                                        Vote</button>
-                                    <a href="#">View Result</a></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    @endforeach
+                @endforeach
             @endif
         </li>
     </ul>
