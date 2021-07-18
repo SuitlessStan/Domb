@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{csrf_token()}}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/calendar.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Domb</title>
 </head>
 <body>
+    @include('sweetalert::alert')
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">Domb</a>
@@ -73,8 +77,8 @@
     {{-- Content --}}
 
     <section id="content-wrapper">
-        <div class="row">
-            <div class="col-md-3">
+        <div class="row" style="margin: 0">
+            <div class="col-md-3" style="padding-left: 0">
                 <div class="left-section">
                     <div class="container" id="cans">
                         <ul id="features" class="container-fluid card bg-light">
@@ -142,7 +146,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/app2.js')}}"></script>
-
-
+    <script src="{{asset('js/calendar.js')}}"></script>
+    <script src="{{asset('vendor/sweetalert.all.js')}}"></script>
+    @yield('javascript')
 </body>
 </html>

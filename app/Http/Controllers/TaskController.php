@@ -12,17 +12,27 @@ class TaskController extends Controller
         return view('tasks',['tasks'=>$tasks,]);
     }
 
+    public function allTasks(){
+        $tasks = Task::all();
+        return response()->json([
+            'tasks'=>$tasks,
+        ]);
+    }
+
     public function store(Request $request){
         request()->validate([
             'task'=>'required',
         ]);
-        $task = Task::create([
-            'body'=>request('task'),
-            'completed'=>'0',
-        ]);
-        $task->save();
 
-        return redirect()->route('tasks');
+        $task = Task::create([
+            'body'=>$request->task,
+            'completed'=>'0'
+        ]);
+
+        return response()->json([
+            'success'=>'Task added!',
+            'task' => $task
+        ]);
 
     }
 }

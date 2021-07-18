@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Comment;
 
 class MediaController extends Controller
 {
     public function index(){
-        return view('media');
+        $posts = Post::with(['comments'])->get();
+        return view('media',['posts'=>$posts]);
     }
 }

@@ -9,7 +9,14 @@ class AppointmentController extends Controller
 {
     public function index(){
         $appointments = Appointment::all();
-        return view('appointments',['appointments'=>$appointments]);
+            return view('appointments',['appointments'=>$appointments]);
+    }
+
+    public function allAppointments(){
+        $appointments = Appointment::all();
+            return response()->json([
+            'appointments'=>$appointments,
+            ]);
     }
 
     public function store(){
@@ -21,8 +28,9 @@ class AppointmentController extends Controller
             'completed'=>'0',
         ]);
 
-        $appointment->save();
-
-        return redirect()->route('appointments');
+            return response()->json([
+                'success'=> 'Task added!',
+                'appointment'=>$appointment,
+            ]);
     }
 }

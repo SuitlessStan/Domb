@@ -4,14 +4,10 @@
 
 <div class="task-form">
     <ul class="align-items-start" id="tasksList">
-        @if ($appointments)
-        @foreach ($appointments as $appointment)
-            <li>
-                <div class="card task-container lead">
-                {{$appointment->body}}
-                </div>
-            </li>
-        @endforeach
+        @if($appointments)
+        <li class="addedAppointments">
+
+        </li>
         @endif
         <li>
             <div class="container align-items-start" id="add_task">
@@ -23,7 +19,7 @@
         </li>
         <li>
             <div class="form-container d-none">
-                <form action="/appointments" method="POST" id="addForm">
+                <form id="addForm">
                     @csrf
                     <label class="lead inherit" for="appointment">Add an Appointment </label>
                     <input type="text" name="appointment" id="appointment" class="inherit">
@@ -34,4 +30,51 @@
         </li>
     </ul>
 </div>
+@endsection
+
+@section('javascript')
+<script>
+    getAppointments();
+    $("#addForm").submit(function(event){
+      event.preventDefault();
+
+      let appointment = $("input[name=appointment]").val();
+      let _token   = $('meta[name="csrf-token"]').attr('content');
+
+      $.ajax({
+        url: "/appointments",
+        type:"POST",
+        data:{
+          appointment:appointment,
+          _token: _token,
+        },
+        success:function(response){
+            $('.success').text(response.success);
+            displayAppointments([response.appointment]);
+        },
+       });
+  });
+
+
+    function getAppointments(){
+        $.ajax({
+        url: "/allAppointments",
+        type:"GET",
+        success:function(response){
+            displayAppointments(response.appointments);
+        },
+       });
+    }
+
+    function displayAppointments(appointments){
+        $.each(appointments,function(i,val){
+            var appointmentHtmlContainer = "<li>";
+                appointmentHtmlContainer+= "<div class='card task-container lead'>";
+                appointmentHtmlContainer+= val.body;
+                appointmentHtmlContainer+="</div>";
+            $('.addedAppointments').append(appointmentHtmlContainer);
+      });
+    }
+</script>
+
 @endsection

@@ -13,9 +13,13 @@ class ActivityController extends Controller
     public function index(){
         $polls = Poll::with(['options'])->get();
         return view('activities', compact('polls'));
-        // return view('activities',[
-        //     'polls'=>$polls,
-        // ]);
+    }
+
+    public function allActivity(){
+        $polls = Poll::with(['options'])->get();
+            return response()->json([
+                'polls'=>$polls,
+            ]);
     }
 
     public function store(Request $request){
@@ -36,9 +40,11 @@ class ActivityController extends Controller
             'option_4'=>$request->input('option_4'),
         ]);
 
-        $poll->save();
 
-        return redirect()->route('activities');
+            return response()->json([
+                'poll'=>$poll,
+                'success'=>'New activity added'
+            ]);
 
 
     }
