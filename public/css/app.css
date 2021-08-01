@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital@1&family=Oswald&family=Tajawal:wght@500&display=swap');
 @charset "UTF-8";
 
 /*!
@@ -6106,7 +6107,6 @@ a.close.disabled {
         max-width: 700px;
         margin: 1.75rem auto;
     }
-    
     .modal-dialog-scrollable {
         max-height: calc(100% - 3.5rem);
     }

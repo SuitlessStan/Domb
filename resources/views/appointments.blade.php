@@ -28,7 +28,7 @@
 
         </li>
         @endif
-      
+
     </ul>
 </div>
 @endsection
@@ -52,6 +52,9 @@
         success:function(response){
             $('.success').text(response.success);
             displayAppointments([response.appointment]);
+            document.forms['addForm'].reset();
+            $('.form-container').addClass('d-none');
+            $('#add_task').removeClass('d-none');
         },
        });
   });
@@ -70,7 +73,7 @@
     function displayAppointments(appointments){
         $.each(appointments,function(i,val){
             var appointmentHtmlContainer = "<li>";
-                appointmentHtmlContainer+= "<div class='card task-container lead'>";
+                appointmentHtmlContainer+= "<div class='card task-container lead bg-info text-dark'>";
                 appointmentHtmlContainer+= val.body;
                 appointmentHtmlContainer+="</div>";
             $('.addedAppointments').append(appointmentHtmlContainer);

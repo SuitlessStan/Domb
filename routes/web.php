@@ -57,5 +57,3 @@ Route::get('/fullCalendar', function(){
     return view('fullCalendar');
 });
 
-// Route::get('ajax-request',[AjaxController::class,'create']);
-// Route::post('ajax-request',[AjaxController::class,'store']);

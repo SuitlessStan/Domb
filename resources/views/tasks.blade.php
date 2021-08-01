@@ -36,7 +36,7 @@
             </li>
             @if ($tasks)
             <li class="addedTasks">
- 
+
             </li>
              @endif
             <li>
@@ -65,6 +65,11 @@
         success:function(response){
             $('.success').text(response.success);
             displayTasks([response.task]);
+            document.forms['addForm'].reset();
+            $('.form-container').addClass('d-none');
+            $('#add_task').removeClass('d-none');
+
+
         },
        });
   });
@@ -82,7 +87,7 @@
   function displayTasks(tasks){
       $.each(tasks,function(i,val){
             var   taskHtmlContainer = "<li>";
-                taskHtmlContainer+= "<div class='card task-container lead'>";
+                taskHtmlContainer+= "<div class='card task-container lead bg-warning text-dark'>";
                 taskHtmlContainer+= val.body;
                 taskHtmlContainer+="</div>";
         $('.addedTasks').append(taskHtmlContainer);
