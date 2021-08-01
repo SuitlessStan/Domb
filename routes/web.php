@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/tasks',[TaskController::class,'index'])->name('tasks');
 Route::get('/allTasks',[TaskController::class,'allTasks'])->name('getTasks');
@@ -45,6 +45,7 @@ Route::post('/activities',[ActivityController::class,'store']);
 
 Route::get('/media',[MediaController::class,'index'])->name('media');
 Route::post('/media',[PostController::class,'store']);
+Route::get('/allPosts',[MediaController::class,'allPosts'])->name('getPosts');
 Route::post('/comments/{postID}',[CommentController::class,'store'])->name('addComment');
 
 
@@ -56,5 +57,5 @@ Route::get('/fullCalendar', function(){
     return view('fullCalendar');
 });
 
-Route::get('ajax-request',[AjaxController::class,'create']);
-Route::post('ajax-request',[AjaxController::class,'store']);
+// Route::get('ajax-request',[AjaxController::class,'create']);
+// Route::post('ajax-request',[AjaxController::class,'store']);

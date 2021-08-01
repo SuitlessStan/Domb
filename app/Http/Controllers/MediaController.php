@@ -12,4 +12,11 @@ class MediaController extends Controller
         $posts = Post::with(['comments'])->get();
         return view('media',['posts'=>$posts]);
     }
+
+    public function allPosts(){
+        $posts = Post::with(['comments'])->get();
+        return response()->json(
+            ['posts'=>$posts,]
+        );
+    }
 }

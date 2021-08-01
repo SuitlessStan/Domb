@@ -1,7 +1,26 @@
 $(document).ready(function() {
     $(function() {
-        $('[data-tooltip="tooltip"]').tooltip()
+        $('[data-tooltip="tooltip"]').tooltip();
+
+        setInterval(function() { $('.navbar-brand').toggleClass('rotate-180 ') }, 1500);
+        changeColor('#home-icon', ['#af3dff', '#55ffe1', '#ff3b94', '#a6fd29', '#37013a'], 1000);
+
     });
+
+    // Alternate colors
+    function changeColor(selector, colors, time) {
+        /* Params:
+         * selector: string,
+         * colors: array of color strings,
+         * every: integer (in mili-seconds)
+         */
+        var curCol = 0,
+            timer = setInterval(function() {
+                if (curCol === colors.length) curCol = 0;
+                $(selector).css("color", colors[curCol]);
+                curCol++;
+            }, time);
+    }
 
     // Display today's date
     var objToday = new Date(),
@@ -32,7 +51,6 @@ $(document).ready(function() {
 
         $('#add_task').addClass('d-none');
         $('.form-container').removeClass('d-none');
-        $('.activities-container').removeClass('d-none');
 
     });
 
@@ -55,6 +73,9 @@ $(document).ready(function() {
         $('#add_task').removeClass('d-none');
 
     });
+
+
+
 
 
 

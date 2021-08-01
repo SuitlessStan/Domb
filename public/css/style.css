@@ -1,3 +1,18 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.rotate-180 {
+    /* -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg); */
+    transform: rotate3d(0, 1, 0, 180deg);
+}
+
+
+/* Nav */
+
 nav {
     background: #AB6450;
     height: 44px;
@@ -50,10 +65,9 @@ button {
 #features {
     height: 100vh !important;
     text-align: center;
-    color: black;
+    color: rgb(41, 39, 39);
     border-radius: 5px;
     padding: 1rem 0.5rem;
-    font-weight: bold;
 }
 
 .features-title {
@@ -110,6 +124,23 @@ button {
     padding-left: 55px;
     padding-right: 55px;
     padding-top: 36px;
+}
+
+#pollsContainer {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#pollsContainer .col-md-6 {
+    padding: 0;
+}
+
+.panel-footer .btn {
+    margin-top: 0;
+}
+
+.panel-footer {
+    gap: 0.8rem !important;
 }
 
 
@@ -227,7 +258,7 @@ button {
 }
 
 .taskInteractionContainer p {
-    margin-top: 14px;
+    margin-top: 18px;
     margin-left: 10px;
 }
 
@@ -237,7 +268,6 @@ button {
 
 .taskInteractionContainer {
     display: flex;
-    justify-content: center;
     padding-top: 0.7rem;
 }
 

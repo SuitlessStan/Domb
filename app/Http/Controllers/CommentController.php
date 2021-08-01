@@ -10,6 +10,8 @@ class CommentController extends Controller
 {
     public function store(Request $request, $postID)
     {
+
+        // dd('xx');
         $request->validate([
             'comment'=>'required'
         ]);
@@ -18,9 +20,12 @@ class CommentController extends Controller
             'body'=>$request->input('comment'),
             'post_id'=>$postID,
         ]);
-        $comment->save();
 
-        return redirect()->route('media');
+        // return redirect()->route('media');
+        return response()->json([
+            'comment'=>$comment,
+            'success'=>'comment added!'
+        ]);
 
     }
 }

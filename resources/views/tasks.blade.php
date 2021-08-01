@@ -15,15 +15,10 @@
 
     <div class="task-form">
         <ul class="align-items-start" id="tasksList">
-            @if ($tasks)
-           <li class="addedTasks">
-
-           </li>
-            @endif
             <li>
                 <div class="container align-items-start" id="add_task">
                     <div class="taskInteractionContainer">
-                        <button type="submit" id="showForm"><i class="fas fa-plus"></i></button>
+                        <button type="submit" id="showForm"><i class="fas fa-tasks"></i></button>
                         <p>Add Task</p>
                     </div>
                 </div>
@@ -39,6 +34,11 @@
                 <button class="btn btn-danger" id="cancelTask">Cancel</button>
                 </div>
             </li>
+            @if ($tasks)
+            <li class="addedTasks">
+ 
+            </li>
+             @endif
             <li>
                 <span class="success" style="color:green; margin-top:10px; margin-bottom: 10px;"></span>
             </li>

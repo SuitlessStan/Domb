@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function index(){
-        
+
     }
     public function store(Request $request){
         // dd('xx');
@@ -20,9 +20,12 @@ class PostController extends Controller
             'body'=>$request->input('post'),
         ]);
 
-        $post->save();
+        // $post->save();
 
-        return redirect()->route('media');
+        return response()->json([
+            'post'=>$post,
+            'message'=>'Post submitted!',
+        ]);
 
     }
 }

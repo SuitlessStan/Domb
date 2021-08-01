@@ -4,15 +4,10 @@
 
 <div class="task-form">
     <ul class="align-items-start" id="tasksList">
-        @if($appointments)
-        <li class="addedAppointments">
-
-        </li>
-        @endif
         <li>
             <div class="container align-items-start" id="add_task">
                 <div class="taskInteractionContainer">
-                    <button type="submit" id="showForm"><i class="fas fa-plus"></i></button>
+                    <button type="submit" id="showForm"><i class="fas fa-calendar-check"></i></button>
                     <p>Add Appointment</p>
                 </div>
             </div>
@@ -28,6 +23,12 @@
             <button class="btn btn-danger" id="cancelTask">Cancel</button>
             </div>
         </li>
+        @if($appointments)
+        <li class="addedAppointments">
+
+        </li>
+        @endif
+      
     </ul>
 </div>
 @endsection
