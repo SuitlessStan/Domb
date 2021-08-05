@@ -69,14 +69,17 @@
                                         <div class="d-flex flex-row muted-color"> <span class="mr-2" data-source="commentCount"></span><span>comments</span></div>
                                     </div>
                                     <hr>
-                                    <div comments>
-                                        <div comment class="comments" data-post-id="">
-                                            <div class="d-flex flex-row mb-2"> <img src="{{asset('images/david-gonzales-2406949.jpg')}}" width="50" height="50" class="avatar">
+                                    <div comments id="comments" post-id="">
+                                        <div comment class="comments d-flex justify-content-between">
+                                            <div class="d-flex flex-row mb-2">
+                                                <img src="{{asset('images/david-gonzales-2406949.jpg')}}" width="50" height="50" class="avatar">
                                                 <div class="d-flex flex-column ml-2">
                                                     <span class="name" data-source="commentersName">User's name</span>
                                                     <small class="comment-text" data-source="commentBody"></small>
                                                     <div class="d-flex flex-row align-items-center status mb-1"> <small class="mr-2"><a href="#">Like</a></small><small class="mr-2 text-success" data-source="commentCreatedTime"></small></div>
                                                 </div>
+                                            </div>
+                                            <div commentDropdown>
                                             </div>
                                         </div>
                                     </div>
@@ -98,59 +101,76 @@
 
     </ul>
 </div>
+
+<div dropdown class="d-none">
+    <div class="dropdown">
+        <button class="text-dark" type="button" id="dropdownMenuButton" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-flip="false">
+            <i class="fas fa-ellipsis-h"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Edit</a>
+          <a class="dropdown-item" href="#">Delete</a>
+        </div>
+      </div>
+</div>
 @endsection
 
 @section('javascript')
     <script>
-        $.ajax(
-            {
-                type:"GET",
-                url:"/allPosts",
-                success:function(response){
-                    displayMedia(response);
-                }
-            }
-        );
 
-        var $commentTemplate = $('[comments]').clone();
-        $('[comments]').html('');
+        getMedia();
+
+
+        function getMedia(){
+            $.ajax({
+                    url: "/allPosts",
+                    type: 'GET',
+                    success: function(res) {
+                        displayMedia(res);
+                        log(res);
+
+                    }
+                });
+        }
 
         var $postTemplate = $('[posts]').clone();
-        $('[posts]').html('');
+        var $commentTemplate = $('[comments]').clone();
+        var $dropdownTemplate = $('[dropdown]').clone();
+
 
         function displayMedia(response){
-            $(response.posts).each(function(){
+           var posts = response.posts;
+           $(posts).each((i,post)=>{
+               var $post = $postTemplate.clone();
+               $post.find('[data-source="postBody"]').html(post.body);
+               $post.find('[data-source="postTimeCreated"]').html(post.created_at);
+               $post.find('[data-source="commentCount"').html(post.comments.length);
+               $('#comments').attr('post-id',post.id);
+               $('[posts]').append($post.html());
+               if (post.comments){
+                   $(post.comments).each((i,comment)=>{
+                       var $comment = $commentTemplate.clone();
+                       var $dropdown = $dropdownTemplate.clone();
+                       $comment.find('[data-source="commentBody"').html(comment.body);
+                       $comment.find('[data-source="commentCreatedTime"').html(comment.created_at);
+                       $comment.find('[commentDropdown]').html($dropdown.html());
 
-                var $post = $postTemplate.clone();
-                $post.find('[data-source="postTimeCreated"]').html(this.created_at);
-                $post.find('[data-source="postBody"]').html(this.body);
-                $post.find('[data-post-id]').attr('data-post-id',this.id);
-                if (this.comments){
-                    $.each(this.comments,function(i,val){
-                        displayComments($post, val);
-                    });
-                }
-                $('[posts]').append($post.html());
-            });
+                   });
+               }
+           });
         }
 
 
-        function displayComments($target, val){
-            var $comment = $commentTemplate.clone();
-            $comment.find('[data-source="commentBody"]').html(val.body);
-            $comment.find('[data-source="commentCreatedTime"]').html(moment().startOf('second').fromNow());
-            $target.find('[comments]').append($comment.html());
-        }
 
-        $(document).on("submit","#addComments", function (e){
+
+        $(document).on("submit","#addComments", (e) => {
             e.preventDefault();
-
-            let comment = $("input[name=comment]").val();
+            let comment = $(this).find('[name="comment"]').val();
             let _token   = $('meta[name="csrf-token"]').attr('content');
             let postID = $(this).attr('data-post-id');
 
             $.ajax({
-                url:"/comments/" + postID,
+                url:"comments/" + postID,
                 method:"POST",
                 data:{
                     comment:comment,
@@ -161,7 +181,6 @@
                     console.log(response)
                     addNewComment(response,postID);
                     $('#addComments')[0].reset();
-                    // console.log(response)
                 }
             });
 
@@ -189,21 +208,15 @@
 
         });
 
-        function addNewPost(response){
-            var $post = $postTemplate.clone();
-            $post.find('[data-source="postTimeCreated"]').html(response.post.created_at);
-            $post.find('[data-source="postBody"]').html(response.post.body);
-            $(['posts']).append($post.html());
-            $('#closeModalButton').click();
-        }
+       function addNewComment(response,postID){
+           var $comment = $commentTemplate.clone();
+           $comment.find('[data-source="commentBody"]').html(response.body);
+           $comment.find('[data-source="commentCreatedTime"]').html(response.created_at);
+           $('[posts]').find(`[post][data-post-id="${postID}"] > [comments]`).append($comment.html());
+       }
 
-        function addNewComment(response,postID){
-            var $comment = $commentTemplate.clone();
-            $comment.find('[data-source="commentBody"]').html(response.comment.body);
-            $comment.find('[data-source="commentCreatedTime"]').html(moment().startOf('second').fromNow());
-            $comment.find('[data-post-id]').attr('data-post-id',postID);
-            $('[posts]').find(`[post][data-post-id="${postID}"] > [comments]`).append($comment.html());
-            console.log($comment.html())
-        }
+       function log(object){
+           console.log(object);
+       }
     </script>
 @endsection

@@ -1,6 +1,6 @@
 body {
     /* font-family: 'Roboto', sans-serif; */
-    font-family: 'Amiri', serif;
+    font-family: 'Roboto Mono', monospace;
     font-size: 1.2rem;
 }
 
@@ -10,6 +10,13 @@ body {
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg); */
     transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.rotate-x {
+    -moz-transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
 }
 
 
@@ -314,171 +321,153 @@ button {
     margin-top: 0.7rem;
 }
 
+.task-container h5 {
+    padding-top: 6px;
+}
+
+.dropdown-menu .show {
+    position: absolute;
+    will-change: transform;
+    top: 0px;
+    left: 0px;
+    transform: translate3d(-201px, 20px, 0px);
+}
+
+
+}
 .inherit {
     width: inherit !important;
 }
-
 .activities-container {
     height: 40vh;
     width: 50vw;
     border: 1px solid #ddd;
     padding: 1rem 1rem;
 }
-
 .question-container {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
-
 .option-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
-
 .options-container {
     display: flex;
     flex-direction: column;
 }
 
-
 /* Polls */
-
 .panel-body:not(.two-col) {
     padding: 0px
 }
-
 .glyphicon {
     margin-right: 5px;
 }
-
 .glyphicon-new-window {
     margin-left: 5px;
 }
-
 .panel-body .radio,
 .panel-body .checkbox {
     margin-top: 0px;
     margin-bottom: 0px;
 }
-
 .panel-body .list-group {
     margin-bottom: 0;
 }
-
 .margin-bottom-none {
     margin-bottom: 0;
 }
-
 .panel-body .radio label,
 .panel-body .checkbox label {
     display: block;
 }
-
 .panel-body .list-group .list-group-item .radio {
     display: flex;
     gap: 1rem;
 }
-
 .panel-body .list-group .list-group-item .radio label {
     font-size: 15px;
 }
-
 #poll-title {
     font-size: 25px;
     background: #AB6450 !important;
 }
-
 .panel-footer {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
 }
-
 .avatar {
     vertical-align: middle;
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
-
 .avatar img {
     vertical-align: middle;
     width: 60px;
     height: 60px;
     border-radius: 50%;
 }
-
 .user-details {
     display: flex;
     gap: 1rem;
     justify-content: center;
     align-items: center;
 }
-
 .user-details p {
     margin-top: 0.2rem;
     margin-bottom: 1rem;
 }
-
 .header-details {
     display: flex;
     justify-content: space-between;
 }
-
 .user-name p {
     margin-bottom: 0;
     margin-top: 0;
     font-size: 13px;
 }
-
 .modal-body {
     padding: 0 0;
 }
-
 .modal-body #post {
     outline: none;
     border: 1px solid #ddd;
     width: 100%;
     height: 75px;
 }
-
 .post-container {
     height: 100%;
 }
-
 .comment-text {
     font-size: 12px
 }
-
 .status small {
     margin-right: 10px;
     color: blue
 }
-
 .form-control {
     border-radius: 26px
 }
-
 .comment-input {
     position: relative
 }
-
 .name {
     font-weight: 600
 }
-
 .fonts {
     position: absolute;
     right: 13px;
     top: 8px;
     color: #a09c9c
 }
-
 .form-control:focus {
     color: #495057;
     background-color: #fff;

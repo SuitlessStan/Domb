@@ -1,18 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <div class="container list-items">
-        <div class="item-in-list">
-            Task 1
-        </div>
-        <div class="item-in-list">
-            Task 2
-        </div>
-        <div class="item-in-list">
-            Task 3
-        </div>
-    </div> --}}
-
     <div class="task-form">
         <ul class="align-items-start" id="tasksList">
             <li>
@@ -27,11 +15,10 @@
                 <div class="form-container d-none">
 
                 <form id="addForm">
-                        <label class="lead" for="task">Add a task </label>
-                        <input type="text" name="task" id="task">
-                        <button class="btn btn-primary submitTask" type="submit">Add task</button>
+                    <input type="text" name="task" id="task" class="w-100">
+                    <button class="font-weight-bold text-dark submitTask" type="submit"><i class="fas fa-plus-circle"></i></button>
+                    <button class="font-weight-bold text-dark" id="cancelTask"><i class="fas fa-minus-circle"></i></button>
                 </form>
-                <button class="btn btn-danger" id="cancelTask">Cancel</button>
                 </div>
             </li>
             @if ($tasks)
@@ -44,10 +31,24 @@
             </li>
         </ul>
     </div>
+    <div dropdown class="d-none">
+        <div class="dropdown">
+            <button class="text-dark" type="button" id="dropdownMenuButton" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-flip="false">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Edit</a>
+              <a class="dropdown-item" href="#">Delete</a>
+            </div>
+          </div>
+    </div>
 @endsection
 
 @section('javascript')
 <script>
+
+    var dropdownClone = $('[dropdown]').clone();
+
     getTasks();
     $("#addForm").submit(function(event){
       event.preventDefault();
@@ -85,10 +86,13 @@
   }
 
   function displayTasks(tasks){
+      var $dropdown = dropdownClone.clone();
+      $dropdown.removeClass('d-none');
       $.each(tasks,function(i,val){
             var   taskHtmlContainer = "<li>";
-                taskHtmlContainer+= "<div class='card task-container lead bg-warning text-dark'>";
-                taskHtmlContainer+= val.body;
+                taskHtmlContainer+= "<div class='task-container lead bg-warning text-dark d-flex justify-content-between align-items-center' task-id="+val.id+">";
+                taskHtmlContainer+= "<h5>"+val.body+"</h5>";
+                taskHtmlContainer+=$dropdown.html();
                 taskHtmlContainer+="</div>";
         $('.addedTasks').append(taskHtmlContainer);
 
@@ -96,6 +100,8 @@
 
 
   }
+
+
 
 </script>
 @endsection

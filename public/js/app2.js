@@ -2,7 +2,8 @@ $(document).ready(function() {
     $(function() {
         $('[data-tooltip="tooltip"]').tooltip();
 
-        setInterval(function() { $('.navbar-brand').toggleClass('rotate-180 ') }, 1500);
+        setInterval(function() { $('.navbar-brand').toggleClass('rotate-180') }, 1500);
+        setInterval(function() { $('#surfer').toggleClass('rotate-x') }, 700);
         changeColor('#home-icon', ['#af3dff', '#55ffe1', '#ff3b94', '#a6fd29', '#37013a'], 1000);
 
     });

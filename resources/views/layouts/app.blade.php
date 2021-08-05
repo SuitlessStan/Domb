@@ -103,7 +103,7 @@
                             <a href="/activities" class="item-nav">
                                 <li  class="d-flex">
                                     <div class="container d-flex">
-                                        <i class="fas fa-snowboarding mr-2"></i>
+                                        <i class="fas fa-snowboarding mr-2" id="surfer"></i>
                                         <small class="features-title">Activities</small>
                                     </div>
                                     <small class="mr-2">{{$pollsCount}}</small>
@@ -142,11 +142,13 @@
 
 
     </section>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/app2.js')}}"></script>
     <script src="{{asset('js/calendar.js')}}"></script>
+    <script src="{{asset('js/pexels.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     @yield('javascript')
 </body>
