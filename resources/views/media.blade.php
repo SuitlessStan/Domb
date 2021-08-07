@@ -69,7 +69,7 @@
                                         <div class="d-flex flex-row muted-color"> <span class="mr-2" data-source="commentCount"></span><span>comments</span></div>
                                     </div>
                                     <hr>
-                                    <div comments id="comments" post-id="">
+                                    <div comments class="comments">
                                         <div comment class="comments d-flex justify-content-between">
                                             <div class="d-flex flex-row mb-2">
                                                 <img src="{{asset('images/david-gonzales-2406949.jpg')}}" width="50" height="50" class="avatar">
@@ -83,9 +83,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <form id="addComments" class="mb-2" data-post-id="" method="POST">
+                                    <form class="mb-2 addComments" data-post-id="" method="POST">
                                         @csrf
-                                        <div class="comment-input"> <input type="text" name="comment" class="form-control" placeholder="Write a new comment">
+                                        <div class="comment-input"> <input type="text" name="comment" id="comment" class="form-control" placeholder="Write a new comment">
                                         </div>
                                     </form>
                                 </div>
@@ -139,46 +139,55 @@
 
 
         function displayMedia(response){
+            $('[posts]').empty();
            var posts = response.posts;
            $(posts).each((i,post)=>{
-               var $post = $postTemplate.clone();
-               $post.find('[data-source="postBody"]').html(post.body);
-               $post.find('[data-source="postTimeCreated"]').html(post.created_at);
-               $post.find('[data-source="commentCount"').html(post.comments.length);
-               $('#comments').attr('post-id',post.id);
-               $('[posts]').append($post.html());
-               if (post.comments){
-                   $(post.comments).each((i,comment)=>{
-                       var $comment = $commentTemplate.clone();
-                       var $dropdown = $dropdownTemplate.clone();
-                       $comment.find('[data-source="commentBody"').html(comment.body);
-                       $comment.find('[data-source="commentCreatedTime"').html(comment.created_at);
-                       $comment.find('[commentDropdown]').html($dropdown.html());
+                var $post = $postTemplate.clone();
+                $post.find('[data-source="postBody"]').html(post.body);
+                $post.find('[data-source="postTimeCreated"]').html(post.created_at);
+                $post.find('[data-source="commentCount"]').html(post.comments.length);
+                $post.find('[post]').attr('data-post-id',post.id);
+                $post.find('.addComments').attr('data-post-id',post.id);
+                $('[posts]').append($post.html());
+                // Get the last appened post and add comments to it.
+                var $post = $('[posts] [post]:last');
+                $post.find('[comments]').empty();
 
-                   });
-               }
+                $(post.comments).each((i,comment)=>{
+                    var $comment = $commentTemplate.clone();
+                    var $dropdown = $dropdownTemplate.clone();
+                    $comment.find('[data-source="commentBody"]').html(comment.body);
+                    $comment.find('[data-source="commentCreatedTime"]').html(comment.created_at);
+                    $comment.find('[commentDropdown]').html($dropdown.html());
+                    $post.find('[comments]').append($comment.html());
+                });
            });
         }
 
 
 
 
-        $(document).on("submit","#addComments", (e) => {
+        $(document).on("submit", ".addComments", (e) => {
             e.preventDefault();
-            let comment = $(this).find('[name="comment"]').val();
-            let _token   = $('meta[name="csrf-token"]').attr('content');
-            let postID = $(this).attr('data-post-id');
+
+            // var postID = $(this).closest('[post]').attr('data-post-id');
+            var postID = $(this).attr('data-post-id');
+            console.log(postID)
+
+            var formData = {
+                comment: $(this).find('#comment').val(),
+                _token:$('meta[name="csrf-token"]').attr('content'),
+                postID:postID,
+            }
+            console.log(formData)
+
 
             $.ajax({
                 url:"comments/" + postID,
                 method:"POST",
-                data:{
-                    comment:comment,
-                    _token:_token,
-                    postID:postID,
-                },
+                data:formData,
                 success:function(response){
-                    console.log(response)
+                    log(response)
                     addNewComment(response,postID);
                     $('#addComments')[0].reset();
                 }
@@ -189,19 +198,21 @@
         $(document).on("submit","#addPost",function(e){
             e.preventDefault();
 
-            let post = $('textarea[name=post]').val();
-            let _token = $('meta[name="csrf-token"]').attr('content');
+            // let post = $('textarea[name=post]').val();
+            // let _token = $('meta[name="csrf-token"]').attr('content');
             let url = $(this).attr('action');
+            var form = $(this);
 
             $.ajax({
                 url:url,
                 method:"POST",
-                data: {
-                    post:post,
-                    _token:_token
-                },
+                // data: {
+                //     post:post,
+                //     _token:_token
+                // },
+                data:form.serialize(),
                 success:function(response){
-                    console.log(response);
+                    log(response);
                     addNewPost(response);
                 }
             });
