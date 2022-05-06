@@ -28,12 +28,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
 
     {
-        $appointmentsCount = Appointment::all()->count();
-        $tasksCount = Task::all()->count();
-        $pollsCount = Poll::all()->count();
-        View::share('appointmentsCount',$appointmentsCount);
-        View::share('tasksCount',$tasksCount);
-        View::share('pollsCount',$pollsCount);
+        // $appointmentsCount = Appointment::all()->count();
+        // $tasksCount = Task::all()->count();
+        // $pollsCount = Poll::all()->count();
+        // View::share('appointmentsCount',$appointmentsCount);
+        // View::share('tasksCount',$tasksCount);
+        // View::share('pollsCount',$pollsCount);
 
     }
 }

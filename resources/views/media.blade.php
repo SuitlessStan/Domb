@@ -13,8 +13,8 @@
         </li>
         <li>
             <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <div class="header-details w-100">
@@ -29,9 +29,9 @@
                                 </div>
                                 <h5 class="modal-title" id="exampleModalLabel">New post</h5>
                             </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <form id="addPost" action="/media" method="POST">
                             @csrf
@@ -39,13 +39,13 @@
                                 <textarea name="post" id="post" placeholder="Remember, be nice!"></textarea>
                             </div>
                             <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="submitPost">Submit Post</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalButton">Close</button>
+                                <button type="submit" class="btn btn-primary" id="submitPost">Submit Post</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalButton">Close</button>
                             </div>
                         </form>
                     </div>
-                    </div>
                 </div>
+            </div>
         </li>
 
 
@@ -108,126 +108,125 @@
             <i class="fas fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Edit</a>
-          <a class="dropdown-item" href="#">Delete</a>
+            <a class="dropdown-item" href="#">Edit</a>
+            <a class="dropdown-item" href="#">Delete</a>
         </div>
-      </div>
+    </div>
 </div>
 @endsection
 
 @section('javascript')
-    <script>
-
-        getMedia();
-
-
-        function getMedia(){
-            $.ajax({
-                    url: "/allPosts",
-                    type: 'GET',
-                    success: function(res) {
-                        displayMedia(res);
-                        log(res);
-
-                    }
-                });
-        }
-
-        var $postTemplate = $('[posts]').clone();
-        var $commentTemplate = $('[comments]').clone();
-        var $dropdownTemplate = $('[dropdown]').clone();
+<script>
+    getMedia();
 
 
-        function displayMedia(response){
-            $('[posts]').empty();
-           var posts = response.posts;
-           $(posts).each((i,post)=>{
-                var $post = $postTemplate.clone();
-                $post.find('[data-source="postBody"]').html(post.body);
-                $post.find('[data-source="postTimeCreated"]').html(post.created_at);
-                $post.find('[data-source="commentCount"]').html(post.comments.length);
-                $post.find('[post]').attr('data-post-id',post.id);
-                $post.find('.addComments').attr('data-post-id',post.id);
-                $('[posts]').append($post.html());
-                // Get the last appened post and add comments to it.
-                var $post = $('[posts] [post]:last');
-                $post.find('[comments]').empty();
+    function getMedia() {
+        $.ajax({
+            url: "/allPosts",
+            type: 'GET',
+            success: function(res) {
+                displayMedia(res);
+                log(res);
 
-                $(post.comments).each((i,comment)=>{
-                    var $comment = $commentTemplate.clone();
-                    var $dropdown = $dropdownTemplate.clone();
-                    $comment.find('[data-source="commentBody"]').html(comment.body);
-                    $comment.find('[data-source="commentCreatedTime"]').html(comment.created_at);
-                    $comment.find('[commentDropdown]').html($dropdown.html());
-                    $post.find('[comments]').append($comment.html());
-                });
-           });
-        }
-
-
-
-
-        $(document).on("submit", ".addComments", (e) => {
-            e.preventDefault();
-
-            // var postID = $(this).closest('[post]').attr('data-post-id');
-            var postID = $(this).attr('data-post-id');
-            console.log(postID)
-
-            var formData = {
-                comment: $(this).find('#comment').val(),
-                _token:$('meta[name="csrf-token"]').attr('content'),
-                postID:postID,
             }
-            console.log(formData)
+        });
+    }
+
+    var $postTemplate = $('[posts]').clone();
+    var $commentTemplate = $('[comments]').clone();
+    var $dropdownTemplate = $('[dropdown]').clone();
 
 
-            $.ajax({
-                url:"comments/" + postID,
-                method:"POST",
-                data:formData,
-                success:function(response){
-                    log(response)
-                    addNewComment(response,postID);
-                    $('#addComments')[0].reset();
-                }
+    function displayMedia(response) {
+        $('[posts]').empty();
+        var posts = response.posts;
+        $(posts).each((i, post) => {
+            var $post = $postTemplate.clone();
+            $post.find('[data-source="postBody"]').html(post.body);
+            $post.find('[data-source="postTimeCreated"]').html(post.created_at);
+            $post.find('[data-source="commentCount"]').html(post.comments.length);
+            $post.find('[post]').attr('data-post-id', post.id);
+            $post.find('.addComments').attr('data-post-id', post.id);
+            $('[posts]').append($post.html());
+            // Get the last appened post and add comments to it.
+            var $post = $('[posts] [post]:last');
+            $post.find('[comments]').empty();
+
+            $(post.comments).each((i, comment) => {
+                var $comment = $commentTemplate.clone();
+                var $dropdown = $dropdownTemplate.clone();
+                $comment.find('[data-source="commentBody"]').html(comment.body);
+                $comment.find('[data-source="commentCreatedTime"]').html(comment.created_at);
+                $comment.find('[commentDropdown]').html($dropdown.html());
+                $post.find('[comments]').append($comment.html());
             });
+        });
+    }
 
+
+
+
+    $(document).on("submit", ".addComments", (e) => {
+        e.preventDefault();
+
+        // var postID = $(this).closest('[post]').attr('data-post-id');
+        var postID = $(this).attr('data-post-id');
+        console.log(postID)
+
+        var formData = {
+            comment: $(this).find('#comment').val(),
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            postID: postID,
+        }
+        console.log(formData)
+
+
+        $.ajax({
+            url: "comments/" + postID,
+            method: "POST",
+            data: formData,
+            success: function(response) {
+                log(response)
+                addNewComment(response, postID);
+                $('#addComments')[0].reset();
+            }
         });
 
-        $(document).on("submit","#addPost",function(e){
-            e.preventDefault();
+    });
 
-            // let post = $('textarea[name=post]').val();
-            // let _token = $('meta[name="csrf-token"]').attr('content');
-            let url = $(this).attr('action');
-            var form = $(this);
+    $(document).on("submit", "#addPost", function(e) {
+        e.preventDefault();
 
-            $.ajax({
-                url:url,
-                method:"POST",
-                // data: {
-                //     post:post,
-                //     _token:_token
-                // },
-                data:form.serialize(),
-                success:function(response){
-                    log(response);
-                    addNewPost(response);
-                }
-            });
+        // let post = $('textarea[name=post]').val();
+        // let _token = $('meta[name="csrf-token"]').attr('content');
+        let url = $(this).attr('action');
+        var form = $(this);
 
+        $.ajax({
+            url: url,
+            method: "POST",
+            // data: {
+            //     post:post,
+            //     _token:_token
+            // },
+            data: form.serialize(),
+            success: function(response) {
+                log(response);
+                addNewPost(response);
+            }
         });
 
-       function addNewComment(response,postID){
-           var $comment = $commentTemplate.clone();
-           $comment.find('[data-source="commentBody"]').html(response.body);
-           $comment.find('[data-source="commentCreatedTime"]').html(response.created_at);
-           $('[posts]').find(`[post][data-post-id="${postID}"] > [comments]`).append($comment.html());
-       }
+    });
 
-       function log(object){
-           console.log(object);
-       }
-    </script>
+    function addNewComment(response, postID) {
+        var $comment = $commentTemplate.clone();
+        $comment.find('[data-source="commentBody"]').html(response.body);
+        $comment.find('[data-source="commentCreatedTime"]').html(response.created_at);
+        $('[posts]').find(`[post][data-post-id="${postID}"] > [comments]`).append($comment.html());
+    }
+
+    function log(object) {
+        console.log(object);
+    }
+</script>
 @endsection

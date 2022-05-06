@@ -1,6 +1,6 @@
 body {
     /* font-family: 'Roboto', sans-serif; */
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
     font-size: 1.2rem;
 }
 
@@ -19,11 +19,10 @@ body {
     -ms-transform: rotate(30deg);
 }
 
-
 /* Nav */
 
 nav {
-    background: #AB6450;
+    background: #ab6450;
     height: 44px;
 }
 
@@ -42,7 +41,7 @@ nav a:hover {
     padding-right: 32px;
 }
 
-.top-right>div {
+.top-right > div {
     margin-right: 10px;
 }
 
@@ -56,7 +55,6 @@ button {
     border: none;
     margin-top: 5px;
 }
-
 
 /* Left section */
 
@@ -120,19 +118,12 @@ button {
     margin-left: 12px;
 }
 
-
 /* Main Section */
 
 #todaysDate {
-    display: flex;
-    background-color: #fff;
     flex-shrink: 0;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    padding-left: 55px;
-    padding-right: 55px;
-    padding-top: 36px;
+    margin:2rem;
+    padding:0.5rem;
 }
 
 #pollsContainer {
@@ -152,12 +143,11 @@ button {
     gap: 0.8rem !important;
 }
 
-
 /* Notification */
 
 .nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
-    background-color: #17A2B8;
+.nav-pills .show > .nav-link {
+    background-color: #17a2b8;
 }
 
 .notification {
@@ -179,8 +169,8 @@ button {
     position: absolute;
     top: -20px;
     right: 12px;
-    border: 10px solid #343A40;
-    border-color: transparent transparent #343A40 transparent;
+    border: 10px solid #343a40;
+    border-color: transparent transparent #343a40 transparent;
 }
 
 .head {
@@ -219,7 +209,6 @@ button {
     }
 }
 
-
 /* Main content */
 
 #date {
@@ -249,7 +238,6 @@ button {
     width: 30vw;
     height: 42px;
 }
-
 
 /* Tasks */
 
@@ -315,7 +303,7 @@ button {
     padding: 0.5rem 1rem;
     width: 60%;
     font-size: 14px;
-    background: #F8FAFC;
+    background: #f8fafc;
     text-align: center;
     margin-left: 1rem;
     margin-top: 0.7rem;
@@ -333,8 +321,6 @@ button {
     transform: translate3d(-201px, 20px, 0px);
 }
 
-
-}
 .inherit {
     width: inherit !important;
 }
@@ -363,7 +349,7 @@ button {
 
 /* Polls */
 .panel-body:not(.two-col) {
-    padding: 0px
+    padding: 0px;
 }
 .glyphicon {
     margin-right: 5px;
@@ -395,7 +381,7 @@ button {
 }
 #poll-title {
     font-size: 25px;
-    background: #AB6450 !important;
+    background: #ab6450 !important;
 }
 .panel-footer {
     display: flex;
@@ -447,31 +433,31 @@ button {
     height: 100%;
 }
 .comment-text {
-    font-size: 12px
+    font-size: 12px;
 }
 .status small {
     margin-right: 10px;
-    color: blue
+    color: blue;
 }
 .form-control {
-    border-radius: 26px
+    border-radius: 26px;
 }
 .comment-input {
-    position: relative
+    position: relative;
 }
 .name {
-    font-weight: 600
+    font-weight: 600;
 }
 .fonts {
     position: absolute;
     right: 13px;
     top: 8px;
-    color: #a09c9c
+    color: #a09c9c;
 }
 .form-control:focus {
     color: #495057;
     background-color: #fff;
     border-color: #8bbafe;
     outline: 0;
-    box-shadow: none
+    box-shadow: none;
 }
